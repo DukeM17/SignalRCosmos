@@ -2,7 +2,7 @@
     "routes": [
       {
         "route": "/api/*",
-        "rewrite": "function-app-001-drcscpegdzfjfjhn.uksouth-01.azurewebsites.net/api/*",
+        "rewrite": "https://function-app-001-drcscpegdzfjfjhn.uksouth-01.azurewebsites.net/api/*",
         "allowedRoles": ["anonymous"]
       }
     ]
