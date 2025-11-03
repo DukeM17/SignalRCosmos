@@ -1,0 +1,48 @@
+{
+  "id": "c23cf5a2-7401-4d87-ad2b-df3800178f27",
+  "batchId": "12859",
+  "version": 1,
+  "stage": "Batch migrated",
+  "statusUpdates": [
+    {
+      "stage": "ODP Calypso recon event",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:29:02Z"
+    },
+    {
+      "stage": "BCA Audit and Recon (Pre-UDM)",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:29:25Z"
+    },
+    {
+      "stage": "CFX Audit and Recon (Pre-UDM)",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:29:27Z"
+    },
+    {
+      "stage": "Batch started",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:37:53Z"
+    },
+    {
+      "stage": "BCA Audit and Recon (Staging)",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:41:05Z"
+    },
+    {
+      "stage": "CFX Audit and Recon (Staging)",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:41:15Z"
+    },
+    {
+      "stage": "Batch loaded",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:42:15Z"
+    },
+    {
+      "stage": "Batch migrated",
+      "status": "Completed",
+      "updatedAt": "2025-10-29T12:47:36Z"
+    }
+  ]
+}
