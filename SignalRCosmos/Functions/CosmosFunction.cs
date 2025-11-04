@@ -13,26 +13,9 @@ public class CosmosFunction
         _logger = logger;
     }
 
-    [Function("OrderCosmosFunction")]
-    [SignalROutput(HubName = "serverless")]
-    public async Task<SignalRMessageAction> Run([CosmosDBTrigger(
-        databaseName: "OrderDB",
-        containerName: "Order",
-        Connection = "CosmosDbConnectionString",
-        LeaseContainerName = "leases",
-        CreateLeaseContainerIfNotExists = true)] IReadOnlyList<Order> input)
-    {
-        if (input != null && input.Count > 0)
-        {
-            _logger.LogInformation("Documents modified: " + input.Count);
-            _logger.LogInformation("First document Id: " + input[0].Id);
-        }
-        return new SignalRMessageAction("newMessage", new object[] { "YES" });
-    }
-
     [Function("BatchCosmosFunction")]
     [SignalROutput(HubName = "serverless")]
-    public async Task<SignalRMessageAction> RunAsync([CosmosDBTrigger(
+    public Task<SignalRMessageAction> Run([CosmosDBTrigger(
         databaseName: "Batch",
         containerName: "BatchRun",
         Connection = "CosmosDbConnectionString",
@@ -44,9 +27,9 @@ public class CosmosFunction
             foreach(var item in input)
             {
                 _logger.LogInformation("Batch Item modified: " + item.Id);
-                return new SignalRMessageAction("batches", new object[] { item });
+                return Task.FromResult(new SignalRMessageAction("batches", new object[] { item }));
             }
         }
-        return new SignalRMessageAction("batches", []);
+        return Task.FromResult(new SignalRMessageAction("batches", []));
     }
 }

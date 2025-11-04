@@ -32,7 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- If the files aren’t already included anywhere else: -->
-    <None Include="content\**\*">
+    <None Include="Content\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
