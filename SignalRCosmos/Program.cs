@@ -11,6 +11,6 @@ builder.Services
     .AddApplicationInsightsTelemetryWorkerService()
     .ConfigureFunctionsApplicationInsights();
 
-builder.Services.AddSignalR().AddAzureSignalR(); // 1. 0 Add SignalR services with Azure SignalR integration
+builder.Services.AddSignalR().AddAzureSignalR();
 
 builder.Build().Run();

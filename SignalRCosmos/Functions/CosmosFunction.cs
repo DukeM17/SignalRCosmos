@@ -18,7 +18,7 @@ public class CosmosFunction
     public async Task<SignalRMessageAction> Run([CosmosDBTrigger(
         databaseName: "OrderDB",
         containerName: "Order",
-        Connection = "CosmosConnectionSetting",
+        Connection = "CosmosDbConnectionString",
         LeaseContainerName = "leases",
         CreateLeaseContainerIfNotExists = true)] IReadOnlyList<Order> input)
     {
@@ -35,7 +35,7 @@ public class CosmosFunction
     public async Task<SignalRMessageAction> RunAsync([CosmosDBTrigger(
         databaseName: "Batch",
         containerName: "BatchRun",
-        Connection = "CosmosConnectionSetting",
+        Connection = "CosmosDbConnectionString",
         LeaseContainerName = "batch-leases",
         CreateLeaseContainerIfNotExists = true)] IReadOnlyList<TmBatchItem> input)
     {
