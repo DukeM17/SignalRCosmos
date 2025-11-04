@@ -1,0 +1,10 @@
+{
+  "routes": [
+    {
+      "route": "/extapi/*",
+      "rewrite": "https://function-app-001-drcscpegdzfjfjhn.uksouth-01.azurewebsites.net/api/*",
+      "allowedRoles": ["anonymous"]
+    }
+  ]
+}
+  
