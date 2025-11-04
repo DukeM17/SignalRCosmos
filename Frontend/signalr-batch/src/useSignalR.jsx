@@ -11,7 +11,7 @@ export function useSignalR() {
     let disposed = false;
 
     async function start() {
-      const res = await fetch("/extapi/negotiate");
+      const res = await fetch("https://function-app-001-drcscpegdzfjfjhn.uksouth-01.azurewebsites.net/api/negotiate", {method: "POST"});
       if (!res.ok) throw new Error("Failed to negotiate");
       const { url, accessToken } = await res.json();
 
