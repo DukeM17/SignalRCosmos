@@ -24,8 +24,10 @@ public class Functions
     public HttpResponseData GetHomePage([HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequestData req)
     {
         var response = req.CreateResponse(HttpStatusCode.OK);
-        var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
-        var indexPath = Path.Combine(projectRoot, "content", "index.html");
+        //var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
+        //var indexPath = Path.Combine(projectRoot, "content", "index.html");
+        var indexPath = Path.Combine(AppContext.BaseDirectory, "content", "index.html");
+
         response.WriteStringAsync(File.ReadAllText(indexPath));
         response.Headers.Add("Content-Type", "text/html");
 

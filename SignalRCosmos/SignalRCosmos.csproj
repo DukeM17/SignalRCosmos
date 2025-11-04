@@ -31,7 +31,8 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.0.5" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="content\indexs.html">
+    <!-- If the files aren’t already included anywhere else: -->
+    <None Include="content\**\*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
