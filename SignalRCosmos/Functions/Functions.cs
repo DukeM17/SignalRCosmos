@@ -1,35 +1,48 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
+using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json.Serialization;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
 
-namespace csharp_isolated;
+namespace SignalRCosmos.Functions;
 
 public class Functions
 {
     private static readonly HttpClient HttpClient = new();
     private static string Etag = string.Empty;
     private static int StarCount = 0;
+    private readonly ILogger<Functions> _logger;
+
+    public Functions(ILogger<Functions> logger)
+    {
+        _logger = logger;
+    }
 
     [Function("index")]
-    public static HttpResponseData GetHomePage([HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequestData req)
+    public HttpResponseData GetHomePage([HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequestData req)
     {
         var response = req.CreateResponse(HttpStatusCode.OK);
         var projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", ".."));
         var indexPath = Path.Combine(projectRoot, "content", "index.html");
         response.WriteStringAsync(File.ReadAllText(indexPath));
         response.Headers.Add("Content-Type", "text/html");
+
         return response;
     }
 
     [Function("negotiate")]
-    public static HttpResponseData Negotiate([HttpTrigger(AuthorizationLevel.Anonymous)] HttpRequestData req,
+    public HttpResponseData Negotiate([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", "options")] HttpRequestData req,
         [SignalRConnectionInfoInput(HubName = "serverless")] string connectionInfo)
     {
+        _logger.LogInformation("In negotiate function");
+
         var response = req.CreateResponse(HttpStatusCode.OK);
         response.Headers.Add("Content-Type", "application/json");
         response.WriteStringAsync(connectionInfo);
+        _logger.LogInformation("Connection info: " + connectionInfo);
+
         return response;
     }
 
